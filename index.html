@@ -50,7 +50,49 @@
         .secondary-card .card-icon { background: transparent; }
         .airport { margin-top: 1rem; padding: 0 1rem 0.25rem; background: #fff; border: 1px solid #cddce5; border-radius: 0.8rem; }
         .airport .partners { padding-bottom: 0.75rem; }
-        .cat-btn { flex: 1 1 8rem; font-weight: 650; }
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 0.75rem;
+        }
+        .cat-btn[data-filter]:not([data-filter="todo"]) {
+            display: grid;
+            align-content: center;
+            justify-items: center;
+            gap: 0.45rem;
+            min-height: clamp(7.25rem, 17vw, 9.25rem);
+            padding: 0.75rem 0.4rem;
+            border: 2px solid transparent;
+            border-radius: 1rem;
+            background: var(--tile);
+            color: #102f43;
+            font-size: clamp(1rem, 2.4vw, 1.2rem);
+            font-weight: 750;
+        }
+        .cat-btn span { font-size: clamp(2.75rem, 6vw, 3.7rem); line-height: 1.15; }
+        .cat-btn[data-filter="moverme"] { --tile: #a5e0ff; }
+        .cat-btn[data-filter="alojarme"] { --tile: #dac8ff; }
+        .cat-btn[data-filter="comer"] { --tile: #ffcda0; }
+        .cat-btn[data-filter="actividades"] { --tile: #a7e9d1; }
+        .cat-btn[data-filter]:not([data-filter="todo"]):hover { border-color: #466a80; }
+        .cat-btn[data-filter]:not([data-filter="todo"])[aria-pressed="true"] {
+            border-color: #07344b;
+            box-shadow: inset 0 0 0 1px #07344b;
+        }
+        .cat-btn[data-filter="todo"] {
+            grid-column: 1 / -1;
+            justify-self: center;
+            border-color: transparent;
+            background: transparent;
+            color: #075578;
+            font-weight: 700;
+            text-decoration: underline;
+            text-underline-offset: 0.2em;
+        }
+        .cat-btn[data-filter="todo"][aria-pressed="true"] { background: #e0eef5; }
+        @media (max-width: 560px) {
+            .categories { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
         .partner-pill { font-size: 1rem; }
     </style>
 </head>
