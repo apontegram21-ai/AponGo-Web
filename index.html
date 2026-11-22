@@ -3,107 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AponGo - Tu Super App en España</title>
+    <title>AponGo | Viajes, transporte y servicios en España</title>
+    <meta name="description" content="Encuentra proveedores de vuelos, hoteles, trenes, taxis, alquiler de coches y actividades en España.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:title" content="AponGo | Viajes, transporte y servicios en España">
+    <meta property="og:description" content="Encuentra vuelos, hoteles, trenes, taxis y actividades en España.">
+    <meta name="referrer" content="no-referrer">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-        body { background-color: #f4f7f9; color: #333; }
-        header { background-color: #006699; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        
-        /* Brand Identity */
-        .logo-area { display: flex; align-items: center; gap: 12px; }
-        .ag-badge { background: #FF5722; color: white; font-weight: 900; padding: 8px 12px; border-radius: 8px; font-size: 20px; font-family: "Arial Black", "Impact", sans-serif; letter-spacing: -1px; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
-        .brand-text-container { display: flex; flex-direction: column; }
-        .brand-name { font-size: 28px; font-weight: 900; font-family: "Arial Black", "Gadget", sans-serif; letter-spacing: -1.2px; line-height: 1; text-shadow: 0 1px 2px rgba(0,0,0,0.15); }
-        .brand-white { color: #FFFFFF; }
-        .brand-orange { color: #FF7043; }
-        .brand-sub { font-size: 10px; opacity: 0.95; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; margin-top: 3px; color: #E0F2FE; }
-
-        .geo-box { background: rgba(255,255,255,0.15); padding: 6px 14px; border-radius: 20px; font-size: 14px; display: flex; align-items: center; gap: 6px; }
-        
-        .search-container { background-color: #005580; padding: 15px 20px; display: flex; justify-content: center; }
-        .search-bar { width: 100%; max-width: 600px; background: white; border-radius: 30px; display: flex; align-items: center; padding: 4px 8px 4px 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
-        .search-bar input { border: none; outline: none; width: 100%; padding: 8px 5px; font-size: 15px; }
-        .search-btn { background: #FF5722; border: none; color: white; padding: 8px 14px; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 14px; transition: background 0.2s; }
-        .search-btn:hover { background: #e04d1d; }
-        
-        .categories { display: flex; gap: 10px; padding: 10px 20px; background-color: #004d73; overflow-x: auto; justify-content: center; }
-        .cat-btn { background: rgba(255,255,255,0.1); border: none; color: white; padding: 6px 14px; border-radius: 15px; font-size: 13px; cursor: pointer; white-space: nowrap; transition: all 0.2s; }
-        .cat-btn.active, .cat-btn:hover { background: white; color: #004d73; font-weight: bold; }
-
-        /* Grid System (3 columnas) */
-        .main-grid { max-width: 1200px; margin: 30px auto; padding: 0 20px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-
-        .card { background: white; border-radius: 12px; padding: 22px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between; border-top: 4px solid #006699; transition: transform 0.2s ease, box-shadow 0.2s ease; }
-        .card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
-
-        .card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; }
-        .card-icon { font-size: 28px; background: #e6f2ff; padding: 10px; border-radius: 10px; }
-        .card-title h3 { font-size: 18px; color: #006699; margin-bottom: 3px; }
-        .card-title p { font-size: 12px; color: #666; }
-        
-        .promo-banner { background: #f0ebf8; border: 1px dashed #7b2cbf; border-radius: 8px; padding: 8px 10px; font-size: 12px; color: #4a1272; margin-bottom: 12px; }
-
-        .partners { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
-        .partner-pill { background: #f0f4f8; padding: 8px 14px; border-radius: 8px; font-size: 13px; font-weight: bold; color: #006699; border: 1px solid #d1d8e0; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; transition: background 0.2s; }
-        .partner-pill:hover { background: #e0ebf5; }
-        .partner-pill.primary { background: #006699; color: white; border: none; }
-        .partner-pill.primary:hover { background: #005580; }
-
-        footer { text-align: center; padding: 20px; font-size: 12px; color: #888; background: #fff; margin-top: 40px; border-top: 1px solid #eaeaea; }
-
-        @media (max-width: 992px) { .main-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 650px) { .main-grid { grid-template-columns: 1fr; } }
+        * { box-sizing: border-box; }
+        body { margin: 0; background: #f3f7fa; color: #173345; font: 1rem/1.5 system-ui, sans-serif; }
+        .wrap { width: min(72rem, calc(100% - 2rem)); margin-inline: auto; }
+        header { background: #07344b; color: #fff; padding: 1.25rem 0 2rem; }
+        .brand { font-size: 1.5rem; font-weight: 800; }
+        .brand span { color: #ffac81; }
+        h1 { font-size: clamp(1.9rem, 5vw, 3rem); line-height: 1.12; margin: 1.25rem 0 0.5rem; }
+        h2, p { margin: 0; }
+        header p { color: #e1edf3; }
+        main { padding-block: 1.5rem 2.5rem; }
+        label { display: block; font-weight: 700; margin-bottom: 0.35rem; }
+        .search-row, .categories, .partners { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        input, button, .partner-pill { min-height: 44px; font: inherit; border: 1px solid #7893a4; border-radius: 0.6rem; padding: 0.55rem 0.8rem; }
+        input { flex: 1 1 15rem; min-width: 0; }
+        button { background: #fff; color: #123e56; cursor: pointer; }
+        .search-btn, .cat-btn[aria-pressed="true"], .partner-pill.primary { background: #075578; border-color: #075578; color: #fff; }
+        .categories { margin-top: 1rem; }
+        #results { margin-block: 1rem 0.5rem; }
+        .main-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: 1rem; }
+        .card { display: flex; flex-direction: column; justify-content: space-between; gap: 1rem; background: #fff; border: 1px solid #cddce5; border-top: 4px solid #08749a; border-radius: 1rem; padding: 1.15rem; }
+        .card-header { display: flex; align-items: center; gap: 0.75rem; }
+        .card-icon { font-size: 1.5rem; background: #e9f4f8; border-radius: 0.65rem; padding: 0.45rem; }
+        .card-title h2 { font-size: 1.2rem; }
+        .partner-pill { display: inline-flex; align-items: center; color: #123e56; text-decoration: none; font-size: 0.9rem; font-weight: 650; }
+        .partner-pill:hover { text-decoration: underline; }
+        footer { background: #fff; border-top: 1px solid #cddce5; padding-block: 1.25rem 2rem; }
+        footer p, details p { margin-block: 0.5rem; }
+        summary { cursor: pointer; font-weight: 700; padding-block: 0.65rem; }
+        :focus-visible { outline: 3px solid #ad430e; outline-offset: 3px; }
+        .skip { position: absolute; transform: translateY(-200%); background: #fff; color: #07344b; padding: 0.6rem; }
+        .skip:focus { transform: none; }
+        [hidden] { display: none !important; }
     </style>
 </head>
 <body>
 
+    <a class="skip" href="#contenido">Saltar al contenido</a>
     <header>
-        <div class="logo-area">
-            <div class="ag-badge">AG</div>
-            <div class="brand-text-container">
-                <div class="brand-name">
-                    <span class="brand-white">Apon</span><span class="brand-orange">Go</span>
-                </div>
-                <div class="brand-sub">Cobertura Nacional • Todo en España</div>
-            </div>
-        </div>
-        <div class="geo-box" id="geo-location">
-            📍 <span id="city-text">Buscando ubicación...</span>
+        <div class="wrap">
+            <div class="brand">Apon<span>Go</span></div>
+            <h1>Viajes y movilidad en España</h1>
+            <p>Encuentra dónde reservar, moverte o pedir a domicilio.</p>
         </div>
     </header>
-
-    <div class="search-container">
-        <div class="search-bar">
-            <input type="text" id="searchInput" placeholder="¿Qué buscas hoy? (Hoteles, Uber, Trenes, Comida...)" oninput="filterCards()">
-            <button class="search-btn" onclick="executeSearch()">🔍 Buscar</button>
+    <main class="wrap" id="contenido">
+        <form role="search" id="searchForm" hidden>
+            <label for="searchInput">Buscar servicios o proveedores</label>
+            <div class="search-row">
+                <input type="search" id="searchInput" placeholder="Ej. taxi, Renfe o alquiler de coche" autocomplete="off">
+                <button class="search-btn" type="submit">Buscar</button>
+                <button type="reset">Limpiar</button>
+            </div>
+        </form>
+        <div class="categories" id="categories" role="group" aria-label="Filtrar por categoría" hidden>
+            <button class="cat-btn" type="button" data-filter="0" aria-pressed="true">Todo</button>
+            <button class="cat-btn" type="button" data-filter="1" aria-pressed="false">Hoteles</button>
+            <button class="cat-btn" type="button" data-filter="2" aria-pressed="false">Vuelos</button>
+            <button class="cat-btn" type="button" data-filter="3" aria-pressed="false">Trenes</button>
+            <button class="cat-btn" type="button" data-filter="4" aria-pressed="false">Alquiler de coches</button>
+            <button class="cat-btn" type="button" data-filter="5" aria-pressed="false">Comida</button>
+            <button class="cat-btn" type="button" data-filter="6" aria-pressed="false">Taxis y VTC</button>
+            <button class="cat-btn" type="button" data-filter="7" aria-pressed="false">Tours y traslados</button>
+            <button class="cat-btn" type="button" data-filter="8" aria-pressed="false">Compras</button>
         </div>
-    </div>
-
-    <div class="categories">
-        <button class="cat-btn active" onclick="filterByCategory('all', this)">Todo</button>
-        <button class="cat-btn" onclick="filterByCategory('Alojamientos', this)">Hoteles</button>
-        <button class="cat-btn" onclick="filterByCategory('Vuelos', this)">Vuelos</button>
-        <button class="cat-btn" onclick="filterByCategory('Trenes', this)">Trenes</button>
-        <button class="cat-btn" onclick="filterByCategory('Alquiler de Coches', this)">Rent a Car</button>
-        <button class="cat-btn" onclick="filterByCategory('Comida a Domicilio', this)">Comida</button>
-        <button class="cat-btn" onclick="filterByCategory('Transporte Urbano / VTC', this)">Taxis / VTC</button>
-        <button class="cat-btn" onclick="filterByCategory('Tours y Traslados', this)">Tours y Traslados</button>
-    </div>
-
-    <div class="main-grid" id="mainGrid">
+        <p id="results" role="status"></p>
+        <p id="empty" hidden>Prueba otro término o selecciona Todo para ampliar la búsqueda.</p>
+        <div class="main-grid" id="mainGrid">
         <!-- 1. Alojamientos -->
         <div class="card" data-category="Alojamientos">
             <div>
                 <div class="card-header">
-                    <div class="card-icon">🏨</div>
+                    <div class="card-icon" aria-hidden="true">🏨</div>
                     <div class="card-title">
-                        <h3>Alojamientos</h3>
+                        <h2>Alojamientos</h2>
                         <p>Hoteles y apartamentos en España</p>
                     </div>
                 </div>
             </div>
             <div class="partners">
-                <a href="https://www.trip.com/hotels/w/home?Allianceid=11137456&SID=334408187&trip_sub1=&trip_sub3=D20685198" target="_blank" rel="noopener noreferrer" class="partner-pill primary">Trip.com Hoteles</a>
+                <a href="https://www.trip.com/hotels/w/home?Allianceid=11137456&amp;SID=334408187&amp;trip_sub1=&amp;trip_sub3=D20685198" target="_blank" rel="noopener noreferrer sponsored" class="partner-pill primary">Trip.com Hoteles</a>
                 <a href="https://www.agoda.com" target="_blank" rel="noopener noreferrer" class="partner-pill">Agoda EU</a>
                 <a href="https://www.airbnb.es" target="_blank" rel="noopener noreferrer" class="partner-pill">Airbnb</a>
                 <a href="https://www.hometogo.es" target="_blank" rel="noopener noreferrer" class="partner-pill">HomeToGo</a>
@@ -114,15 +101,15 @@
         <div class="card" data-category="Vuelos">
             <div>
                 <div class="card-header">
-                    <div class="card-icon">✈️</div>
+                    <div class="card-icon" aria-hidden="true">✈️</div>
                     <div class="card-title">
-                        <h3>Vuelos</h3>
+                        <h2>Vuelos</h2>
                         <p>Vuelos nacionales e internacionales</p>
                     </div>
                 </div>
             </div>
             <div class="partners">
-                <a href="https://www.trip.com/flights/Madrid-to-Madrid/tickets-MAD-MAD?flighttype=S&dcity=MAD&acity=MAD&Allianceid=11137456&SID=334408187&trip_sub1=&trip_sub3=D20685198" target="_blank" rel="noopener noreferrer" class="partner-pill primary">Trip.com Vuelos</a>
+                <a href="https://www.trip.com/flights/?Allianceid=11137456&amp;SID=334408187&amp;trip_sub1=&amp;trip_sub3=D20685198" target="_blank" rel="noopener noreferrer sponsored" class="partner-pill primary">Trip.com Vuelos</a>
                 <a href="https://www.skyscanner.es" target="_blank" rel="noopener noreferrer" class="partner-pill">Skyscanner</a>
                 <a href="https://www.kayak.es" target="_blank" rel="noopener noreferrer" class="partner-pill">KAYAK</a>
             </div>
@@ -132,15 +119,15 @@
         <div class="card" data-category="Trenes">
             <div>
                 <div class="card-header">
-                    <div class="card-icon">🚆</div>
+                    <div class="card-icon" aria-hidden="true">🚆</div>
                     <div class="card-title">
-                        <h3>Trenes</h3>
+                        <h2>Trenes</h2>
                         <p>Billetes de tren en toda España</p>
                     </div>
                 </div>
             </div>
             <div class="partners">
-                <a href="https://www.trip.com/trains/tt-common/ttlist?departurecitycode=PH001112428&arrivalcitycode=PH001112428&Allianceid=11137456&SID=334408187&trip_sub1=&trip_sub3=D20685198" target="_blank" rel="noopener noreferrer" class="partner-pill primary">Trip.com Trenes</a>
+                <a href="https://www.trip.com/trains/spain/?Allianceid=11137456&amp;SID=334408187&amp;trip_sub1=&amp;trip_sub3=D20685198" target="_blank" rel="noopener noreferrer sponsored" class="partner-pill primary">Trip.com Trenes</a>
                 <a href="https://www.omio.es" target="_blank" rel="noopener noreferrer" class="partner-pill">Omio</a>
                 <a href="https://www.renfe.com" target="_blank" rel="noopener noreferrer" class="partner-pill">Renfe</a>
             </div>
@@ -150,16 +137,16 @@
         <div class="card" data-category="Alquiler de Coches">
             <div>
                 <div class="card-header">
-                    <div class="card-icon">🚗</div>
+                    <div class="card-icon" aria-hidden="true">🚗</div>
                     <div class="card-title">
-                        <h3>Alquiler de Coches</h3>
-                        <p>Alquiler rápido y garantizado</p>
+                        <h2>Alquiler de Coches</h2>
+                        <p>Proveedores de alquiler de coches</p>
                     </div>
                 </div>
             </div>
             <div class="partners">
-                <a href="https://www.discovercars.com/?a_aid=AponGo" target="_blank" rel="noopener noreferrer" class="partner-pill primary">Discover Cars</a>
-                <a href="https://www.trip.com/carhire/?Allianceid=11137456&SID=334408187&trip_sub1=&trip_sub3=D206851988" target="_blank" rel="noopener noreferrer" class="partner-pill">Trip.com Rent</a>
+                <a href="https://www.discovercars.com/?a_aid=AponGo" target="_blank" rel="noopener noreferrer sponsored" class="partner-pill primary">Discover Cars</a>
+                <a href="https://www.trip.com/carhire/?Allianceid=11137456&amp;SID=334408187&amp;trip_sub1=&amp;trip_sub3=D20685198" target="_blank" rel="noopener noreferrer sponsored" class="partner-pill">Trip.com Rent</a>
                 <a href="https://www.rentalcars.com" target="_blank" rel="noopener noreferrer" class="partner-pill">Rentalcars</a>
             </div>
         </div>
@@ -168,15 +155,13 @@
         <div class="card" data-category="Comida a Domicilio">
             <div>
                 <div class="card-header">
-                    <div class="card-icon">🍔</div>
+                    <div class="card-icon" aria-hidden="true">🍔</div>
                     <div class="card-title">
-                        <h3>Comida a Domicilio</h3>
+                        <h2>Comida a Domicilio</h2>
                         <p>Tus restaurantes favoritos</p>
                     </div>
                 </div>
-                <div class="promo-banner">
-                    🍔 <strong>Cupón Uber Eats:</strong> Usa <strong>eats-y0hvel0zm7</strong>
-                </div>
+                
             </div>
             <div class="partners">
                 <a href="https://www.ubereats.com/es" target="_blank" rel="noopener noreferrer" class="partner-pill primary">Uber Eats</a>
@@ -189,18 +174,16 @@
         <div class="card" data-category="Transporte Urbano / VTC">
             <div>
                 <div class="card-header">
-                    <div class="card-icon">🚖</div>
+                    <div class="card-icon" aria-hidden="true">🚖</div>
                     <div class="card-title">
-                        <h3>Transporte Urbano / VTC</h3>
+                        <h2>Transporte Urbano / VTC</h2>
                         <p>Taxis, viajes y patinetes en tu ciudad</p>
                     </div>
                 </div>
-                <div class="promo-banner">
-                    🎁 <strong>¡Descuento Cabify!</strong> Usa el código <strong>J-A105</strong>
-                </div>
+                
             </div>
             <div class="partners">
-                <a href="https://cabify.com/i/J-A105" target="_blank" rel="noopener noreferrer" class="partner-pill primary">Cabify (Cupón J-A105)</a>
+                <a href="https://cabify.com/es" target="_blank" rel="noopener noreferrer" class="partner-pill primary">Cabify</a>
                 <a href="https://www.uber.com/es/es/" target="_blank" rel="noopener noreferrer" class="partner-pill">Uber Viajes</a>
                 <a href="https://bolt.eu/es-es/" target="_blank" rel="noopener noreferrer" class="partner-pill">Bolt</a>
             </div>
@@ -210,16 +193,16 @@
         <div class="card" data-category="Tours y Traslados">
             <div>
                 <div class="card-header">
-                    <div class="card-icon">🎟️</div>
+                    <div class="card-icon" aria-hidden="true">🎟️</div>
                     <div class="card-title">
-                        <h3>Tours y Traslados</h3>
+                        <h2>Tours y Traslados</h2>
                         <p>Atracciones y traslados al aeropuerto</p>
                     </div>
                 </div>
             </div>
             <div class="partners">
-                <a href="https://www.trip.com/things-to-do/?Allianceid=11137456&SID=334408187&trip_sub1=&trip_sub3=D20685198" target="_blank" rel="noopener noreferrer" class="partner-pill primary">Atracciones y Tours</a>
-                <a href="https://www.trip.com/airport-transfers/?Allianceid=11137456&SID=334408187&trip_sub1=&trip_sub3=D20685198" target="_blank" rel="noopener noreferrer" class="partner-pill">Traslado Aeropuerto</a>
+                <a href="https://www.trip.com/things-to-do/?Allianceid=11137456&amp;SID=334408187&amp;trip_sub1=&amp;trip_sub3=D20685198" target="_blank" rel="noopener noreferrer sponsored" class="partner-pill primary">Atracciones y Tours</a>
+                <a href="https://www.trip.com/airport-transfers/?Allianceid=11137456&amp;SID=334408187&amp;trip_sub1=&amp;trip_sub3=D20685198" target="_blank" rel="noopener noreferrer sponsored" class="partner-pill">Traslado Aeropuerto</a>
             </div>
         </div>
 
@@ -227,107 +210,135 @@
         <div class="card" data-category="Compras">
             <div>
                 <div class="card-header">
-                    <div class="card-icon">📦</div>
+                    <div class="card-icon" aria-hidden="true">📦</div>
                     <div class="card-title">
-                        <h3>Tienda y Ofertas</h3>
+                        <h2>Tienda y Ofertas</h2>
                         <p>Accesorios de viaje y tecnología</p>
                     </div>
                 </div>
             </div>
             <div class="partners">
-                <a href="https://www.amazon.es?tag=apongoweb-21" target="_blank" rel="noopener noreferrer" class="partner-pill primary">Amazon España</a>
-                <a href="https://www.correos.es" target="_blank" rel="noopener noreferrer" class="partner-pill">Correos Express</a>
+                <a href="https://www.amazon.es/" target="_blank" rel="noopener noreferrer" class="partner-pill primary">Amazon España</a>
+                <a href="https://www.correos.es/" target="_blank" rel="noopener noreferrer" class="partner-pill">Correos</a>
             </div>
         </div>
     </div>
 
+    </main>
     <footer>
-        AponGo © 2026 | Tu Super App de Viajes y Movilidad en España
+        <div class="wrap">
+            <p>Algunos enlaces son de afiliación. AponGo puede recibir una comisión si reservas a través de ellos.</p>
+            <p>Los enlaces de proveedores se abren en otra pestaña.</p>
+            <details id="privacidad">
+                <summary>Privacidad y medición</summary>
+                <p>Las búsquedas se procesan en tu navegador. AponGo no solicita tu ubicación ni pide crear una cuenta. Las reservas se hacen con cada proveedor, que aplica su propia política de privacidad.</p>
+                <p>Si activas la medición, Vercel Web Analytics registra visitas y, cuando el plan lo admite, clics en proveedores. No enviamos lo que escribes en el buscador. Tu elección se guarda durante la sesión de esta pestaña.</p>
+                <button id="analyticsToggle" type="button" aria-pressed="false" hidden>Medición opcional</button>
+                <p id="analyticsStatus" role="status"></p>
+            </details>
+        </div>
     </footer>
-
     <script>
-        function filterCards() {
-            const query = document.getElementById('searchInput').value.toLowerCase().trim();
-            const cards = document.querySelectorAll('.card');
+        const aliases = [
+            'hotel hoteles hostal hostales alojamiento alojamientos apartamentos',
+            'vuelo vuelos avion aviones billete billetes aeropuerto',
+            'tren trenes ferrocarril ave billete billetes',
+            'coche coches auto autos rent car alquiler',
+            'comida delivery domicilio restaurante restaurantes',
+            'taxi taxis vtc uber patinete patinetes movilidad',
+            'tour tours excursion excursiones actividad actividades traslado traslados aeropuerto',
+            'compra compras tienda accesorio accesorios'
+        ];
+        const normalize = text => text.toLowerCase().normalize('NFD')
+            .replace(/\p{M}/gu, '').replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
+        const form = document.querySelector('#searchForm');
+        const input = document.querySelector('#searchInput');
+        const categories = document.querySelector('#categories');
+        const buttons = [...categories.querySelectorAll('button')];
+        const cards = [...document.querySelectorAll('.card')].map((element, index) => ({
+            element,
+            category: index + 1,
+            text: normalize(element.textContent + ' ' + aliases[index])
+        }));
+        let selectedCategory = 0;
 
-            cards.forEach(card => {
-                const text = card.innerText.toLowerCase();
-                if (text.includes(query)) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
+        function renderResults() {
+            const terms = normalize(input.value).split(' ').filter(Boolean);
+            let count = 0;
+            for (const card of cards) {
+                const matchesCategory = selectedCategory === 0 || card.category === selectedCategory;
+                const visible = matchesCategory && terms.every(term => card.text.includes(term));
+                card.element.hidden = !visible;
+                count += Number(visible);
+            }
+            document.querySelector('#results').textContent = count === 1 ? '1 servicio' : count + ' servicios';
+            document.querySelector('#empty').hidden = count > 0;
         }
 
-        function executeSearch() {
-            const query = document.getElementById('searchInput').value.trim();
-            if (!query) return;
-
-            const visibleCards = Array.from(document.querySelectorAll('.card')).filter(c => c.style.display !== 'none');
-            
-            if (visibleCards.length === 0) {
-                window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}+reserva+españa`, '_blank');
-            }
-        }
-
-        document.getElementById('searchInput').addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-                executeSearch();
-            }
+        input.addEventListener('input', renderResults);
+        form.addEventListener('submit', event => {
+            event.preventDefault();
+            renderResults();
         });
-
-        function filterByCategory(categoryName, btnElement) {
-            const buttons = document.querySelectorAll('.cat-btn');
-            buttons.forEach(b => b.classList.remove('active'));
-            btnElement.classList.add('active');
-
-            const cards = document.querySelectorAll('.card');
-            document.getElementById('searchInput').value = '';
-
-            cards.forEach(card => {
-                if (categoryName === 'all' || card.getAttribute('data-category') === categoryName) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
+        form.addEventListener('reset', () => queueMicrotask(renderResults));
+        for (const button of buttons) {
+            button.addEventListener('click', () => {
+                selectedCategory = Number(button.dataset.filter);
+                for (const option of buttons) option.setAttribute('aria-pressed', option === button);
+                renderResults();
             });
         }
+        form.hidden = false;
+        categories.hidden = false;
+        renderResults();
+    </script>
+    <script>
+        const analyticsToggle = document.querySelector('#analyticsToggle');
+        const analyticsStatus = document.querySelector('#analyticsStatus');
+        const preferenceKey = 'apongo-analytics';
+        const isServed = location.protocol === 'https:';
+        let analyticsEnabled = false;
+        try { analyticsEnabled = isServed && sessionStorage.getItem(preferenceKey) === 'on'; } catch {}
 
-        async function detectUserLocation() {
-            const cityElement = document.getElementById('city-text');
-
-            try {
-                const ipResponse = await fetch('https://ipapi.co/json/');
-                if (ipResponse.ok) {
-                    const ipData = await ipResponse.json();
-                    if (ipData.city) {
-                        cityElement.innerText = `${ipData.city}, ${ipData.country_name || 'España'}`;
-                    }
-                }
-            } catch (e) {
-                cityElement.innerText = 'España';
-            }
-
-            if ("geolocation" in navigator) {
-                navigator.geolocation.getCurrentPosition(async (position) => {
-                    const lat = position.coords.latitude;
-                    const lon = position.coords.longitude;
-                    try {
-                        const geoResponse = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=10`);
-                        if (geoResponse.ok) {
-                            const geoData = await geoResponse.json();
-                            const detectedCity = geoData.address.city || geoData.address.town || geoData.address.village;
-                            if (detectedCity) {
-                                cityElement.innerText = `${detectedCity}, España`;
-                            }
-                        }
-                    } catch (err) {}
-                }, (error) => {}, { timeout: 5000 });
-            }
+        function loadAnalytics() {
+            window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+            const script = document.createElement('script');
+            script.defer = true;
+            script.src = '/_vercel/insights/script.js';
+            script.addEventListener('error', () => {
+                analyticsStatus.textContent = 'La medición no está disponible en este despliegue.';
+            });
+            document.head.append(script);
         }
 
-        window.addEventListener('DOMContentLoaded', detectUserLocation);
+        if (isServed) {
+            analyticsToggle.hidden = false;
+            analyticsToggle.setAttribute('aria-pressed', analyticsEnabled);
+            if (analyticsEnabled) loadAnalytics();
+            analyticsToggle.addEventListener('click', () => {
+                try {
+                    sessionStorage.setItem(preferenceKey, analyticsEnabled ? 'off' : 'on');
+                } catch {
+                    analyticsStatus.textContent = 'El navegador no permite guardar tu elección.';
+                    return;
+                }
+                if (analyticsEnabled) {
+                    analyticsEnabled = false;
+                    location.reload();
+                    return;
+                }
+                analyticsEnabled = true;
+                analyticsToggle.setAttribute('aria-pressed', 'true');
+                loadAnalytics();
+            });
+            document.querySelector('#mainGrid').addEventListener('click', event => {
+                const link = event.target.closest('.partner-pill');
+                if (!analyticsEnabled || !link) return;
+                window.va('event', { name: 'clic_proveedor', data: {
+                    proveedor: link.hostname, categoria: link.closest('.card').dataset.category
+                } });
+            });
+        }
     </script>
 </body>
 </html>
