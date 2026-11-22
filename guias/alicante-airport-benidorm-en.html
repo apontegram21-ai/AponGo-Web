@@ -52,6 +52,10 @@
         .route-grid .partners { margin-top: auto; }
         .help { margin-top: 1.5rem; }
         .help details { border-bottom: 1px solid #cddce5; }
+        .route-fact { color: #075578; font-weight: 750; }
+        .route-details { border-top: 1px solid #cddce5; }
+        .route-details summary { font-size: 0.95rem; }
+        #llegada-tarde:target { outline: 2px solid #075578; outline-offset: 3px; }
     </style>
 </head>
 <body data-analytics-page="alicante-benidorm-en">
@@ -62,7 +66,7 @@
         <p>Alicante–Elche Miguel Hernández Airport (ALC) · Costa Blanca</p>
     </div></header>
     <main id="content" class="wrap">
-        <p class="intro">Check the direct coach first if you want to avoid changing vehicles. For door-to-door travel, compare an airport taxi and a pre-booked transfer.</p>
+        <p class="intro">Compare four ways to reach your accommodation. <a href="#llegada-tarde">Arriving late?</a></p>
         <div class="partners"><a class="partner-pill" lang="es" hreflang="es" href="aeropuerto-alicante-benidorm.html">Leer en español</a></div>
         <div class="partners">
             <button id="shareGuide" type="button" hidden>Copy guide link</button>
@@ -72,28 +76,32 @@
         <div class="main-grid route-grid">
             <article class="card" data-category="Bus">
                 <h3>Direct Alsa coach</h3>
-                <p>Select your travel date and check which Benidorm stop is closest to your accommodation.</p>
+                <p class="route-fact">No changes</p>
+                <details class="route-details"><summary>Stops and travel tips</summary><p>Select your travel date and check which Benidorm stop is closest to your accommodation.</p></details>
                 <div class="partners"><a class="partner-pill primary" href="https://www.alsa.es/ruta/aeropuerto-alicante-elche-benidorm" target="_blank" rel="noopener noreferrer">Check Alsa times and tickets</a></div>
             </article>
             <article class="card" data-category="TRAM">
                 <h3>C6 airport bus and TRAM</h3>
-                <p>Take the C6 to Alicante, get off at Luceros and change to TRAM line 1 towards Benidorm. Check both timetables and allow time to change.</p>
+                <p class="route-fact">1 change in Alicante</p>
+                <details class="route-details"><summary>Stops and travel tips</summary><p>Take the C6 to Alicante, get off at Luceros and change to TRAM line 1 towards Benidorm. Check both timetables and allow time to change.</p></details>
                 <div class="partners"><a class="partner-pill" href="https://www.aena.es/en/alicante-elche-miguel-hernandez/how-to-get-there/train-tram.html" target="_blank" rel="noopener noreferrer">Check the airport connection</a></div>
             </article>
             <article class="card" data-category="Taxi">
                 <h3>Official airport taxi</h3>
-                <p>Ask the operator for an estimate to your exact address in Benidorm.</p>
+                <p class="route-fact">Door to door</p>
+                <details class="route-details"><summary>Stops and travel tips</summary><p>Ask the operator for an estimate to your exact address in Benidorm.</p></details>
                 <div class="partners"><a class="partner-pill" href="https://www.aena.es/en/alicante-elche-miguel-hernandez/how-to-get-there/taxi.html" target="_blank" rel="noopener noreferrer">See official taxi operators</a></div>
             </article>
             <article class="card" data-category="Private transfer">
                 <h3>Pre-booked private transfer</h3>
-                <p>Check the total price, meeting point and what happens if your flight is delayed.</p>
+                <p class="route-fact">Book ahead</p>
+                <details class="route-details"><summary>Stops and travel tips</summary><p>Check the total price, meeting point and what happens if your flight is delayed.</p></details>
                 <div class="partners"><a class="partner-pill" href="https://www.trip.com/airport-transfers/?Allianceid=11137456&amp;SID=334408187&amp;trip_sub1=&amp;trip_sub3=D20685198" target="_blank" rel="noopener noreferrer sponsored">Check transfers on Trip.com</a></div>
             </article>
         </div>
         <section class="help" aria-labelledby="before">
             <h2 id="before">Before you leave the airport</h2>
-            <details><summary>What if my flight arrives late?</summary><p>Check the last departure for your travel date and allow time to collect your luggage. Keep a taxi or transfer in mind if the connection is tight.</p></details>
+            <details id="llegada-tarde"><summary>What if my flight arrives late?</summary><p>Check the last departure for your travel date and allow time to collect your luggage. Keep a taxi or transfer in mind if the connection is tight.</p></details>
             <details><summary>Which stop should I use?</summary><p>Check your accommodation address before booking. If the stop is far away, plan the final leg in advance.</p></details>
         </section>
     </main>
@@ -107,6 +115,14 @@
             <p id="analyticsStatus" role="status"></p>
         </details>
     </div></footer>
+    <script>
+        const lateArrival = document.querySelector('#llegada-tarde');
+        function showLateArrival() {
+            if (location.hash === '#llegada-tarde') lateArrival.open = true;
+        }
+        window.addEventListener('hashchange', showLateArrival);
+        showLateArrival();
+    </script>
     <script src="../apongo-analytics.js" defer></script>
 </body>
 </html>
