@@ -12,9 +12,17 @@
     <meta name="referrer" content="no-referrer">
     <style>
         * { box-sizing: border-box; }
-        body { margin: 0; background: #f3f7fa; color: #173345; font: 1rem/1.5 system-ui, sans-serif; }
+        body { margin: 0; background: #f2f9fb; color: #173345; font: 1rem/1.5 system-ui, sans-serif; }
         .wrap { width: min(72rem, calc(100% - 2rem)); margin-inline: auto; }
-        header { background: #07344b; color: #fff; padding: 1.25rem 0 2rem; }
+        header {
+            background:
+                radial-gradient(ellipse at 100% 120%, #137c8c 0%, transparent 62%),
+                repeating-radial-gradient(circle at 99% 30%, transparent 0 32px, #b6faff19 33px 34px, transparent 35px 55px),
+                linear-gradient(115deg, #062d45, #075568);
+            color: #fff;
+            padding: 1.45rem 0 2.1rem;
+            border-bottom: 4px solid #ff7043;
+        }
         .brand { display: flex; align-items: center; gap: 0.75rem; font-size: clamp(2.25rem, 6vw, 3.25rem); font-weight: 900; line-height: 1.05; letter-spacing: -0.035em; }
         .ag-badge { background: #FF5722; color: white; font-weight: 900; padding: 8px 12px; border-radius: 8px; font-size: 1.25rem; font-family: "Arial Black", "Impact", sans-serif; letter-spacing: -1px; flex: none; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
         .brand-orange { color: #FF7043; }
@@ -48,7 +56,10 @@
         .secondary-card { grid-column: 1 / -1; background: #edf3f6; border: 1px solid #cddce5; }
         .secondary-card .card-title h2 { font-size: 1rem; }
         .secondary-card .card-icon { background: transparent; }
-        .airport { margin-top: 1rem; padding: 0 1rem 0.25rem; background: #fff; border: 1px solid #cddce5; border-radius: 0.8rem; }
+        .airport { margin-top: 1rem; padding: 0.25rem 1rem; background: #ddf4f3; border: 1px solid #a4d8d8; border-radius: 0.9rem; }
+        .airport summary { font-size: 1.1rem; }
+        .airport .partner-pill { background: #fff; border-color: #90bfca; }
+        .airport .partner-pill:hover { background: #f0fbff; }
         .airport .partners { padding-bottom: 0.75rem; }
         .categories {
             display: grid;
@@ -64,16 +75,16 @@
             padding: 0.75rem 0.4rem;
             border: 2px solid transparent;
             border-radius: 1rem;
-            background: var(--tile);
+            background: radial-gradient(circle at 78% 8%, #ffffff85, transparent 55%), var(--tile);
             color: #102f43;
             font-size: clamp(1rem, 2.4vw, 1.2rem);
             font-weight: 750;
         }
-        .cat-btn span { font-size: clamp(2.75rem, 6vw, 3.7rem); line-height: 1.15; }
-        .cat-btn[data-filter="moverme"] { --tile: #a5e0ff; }
-        .cat-btn[data-filter="alojarme"] { --tile: #dac8ff; }
-        .cat-btn[data-filter="comer"] { --tile: #ffcda0; }
-        .cat-btn[data-filter="actividades"] { --tile: #a7e9d1; }
+        .cat-btn span { filter: drop-shadow(0 4px 4px #18324935); font-size: clamp(2.75rem, 6vw, 3.7rem); line-height: 1.15; }
+        .cat-btn[data-filter="moverme"] { --tile: #73d3ff; }
+        .cat-btn[data-filter="alojarme"] { --tile: #c8a9ff; }
+        .cat-btn[data-filter="comer"] { --tile: #ffb274; }
+        .cat-btn[data-filter="actividades"] { --tile: #72e0b5; }
         .cat-btn[data-filter]:not([data-filter="todo"]):hover { border-color: #466a80; }
         .cat-btn[data-filter]:not([data-filter="todo"])[aria-pressed="true"] {
             border-color: #07344b;
@@ -125,7 +136,7 @@
             <button class="cat-btn" type="button" data-filter="actividades" aria-pressed="false"><span aria-hidden="true">🎟️</span> Qué hacer</button>
             <button class="cat-btn" type="button" data-filter="todo" aria-pressed="false">Ver todo</button>
         </div>
-        <details class="airport" id="airport">
+        <details class="airport" id="airport" open>
             <summary>Desde el aeropuerto de Alicante</summary>
             <div class="partners">
                 <a class="partner-pill" data-guide-link href="guias/aeropuerto-alicante-benidorm.html">Benidorm</a>
@@ -323,6 +334,7 @@
         const guides = [...airport.querySelectorAll('[data-guide-link]')];
         const resultStatus = document.querySelector('#results');
         let selectedCategory = '';
+        let airportWasOpen = airport.open;
 
         function renderResults() {
             const terms = normalize(input.value).split(' ').filter(Boolean);
@@ -336,8 +348,9 @@
             }
             const hasGuides = guides.some(guide => !guide.hidden);
             airport.hidden = !showTravel || !hasGuides;
+            if (searching && airport.dataset.searching !== 'true') airportWasOpen = airport.open;
             if (searching && showTravel && hasGuides) airport.open = true;
-            if (!searching && airport.dataset.searching === 'true') airport.open = false;
+            if (!searching && airport.dataset.searching === 'true') airport.open = airportWasOpen;
             airport.dataset.searching = String(searching);
 
             for (const card of cards) {
