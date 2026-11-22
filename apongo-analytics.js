@@ -3,6 +3,18 @@
     const status = document.querySelector('#analyticsStatus');
     const key = 'apongo-analytics';
     const page = document.body.dataset.analyticsPage;
+    const english = document.documentElement.lang === 'en';
+    const copy = english ? {
+        unavailable: 'Analytics are unavailable on this deployment.',
+        copied: 'Link copied.',
+        clipboard: 'You can copy the link from the address bar.',
+        storage: 'Your browser could not save your choice.'
+    } : {
+        unavailable: 'La medición no está disponible en este despliegue.',
+        copied: 'Enlace copiado.',
+        clipboard: 'Puedes copiar el enlace desde la barra de direcciones.',
+        storage: 'El navegador no permite guardar tu elección.'
+    };
     let enabled = false;
 
     function track(name, data = {}) {
@@ -18,7 +30,7 @@
         const script = document.createElement('script');
         script.src = '/_vercel/insights/script.js';
         script.addEventListener('error', () => {
-            status.textContent = 'La medición no está disponible en este despliegue.';
+            status.textContent = copy.unavailable;
         });
         document.head.append(script);
     }
@@ -30,10 +42,10 @@
             const feedback = document.querySelector('#shareStatus');
             try {
                 await navigator.clipboard.writeText(location.origin + location.pathname);
-                feedback.textContent = 'Enlace copiado.';
+                feedback.textContent = copy.copied;
                 track('copiar_guia');
             } catch {
-                feedback.textContent = 'Puedes copiar el enlace desde la barra de direcciones.';
+                feedback.textContent = copy.clipboard;
             }
         });
     }
@@ -48,7 +60,7 @@
         try {
             sessionStorage.setItem(key, enabled ? 'off' : 'on');
         } catch {
-            status.textContent = 'El navegador no permite guardar tu elección.';
+            status.textContent = copy.storage;
             return;
         }
         if (enabled) {
@@ -65,7 +77,7 @@
         const link = event.target.closest('a');
         if (!link) return;
         if (link.hasAttribute('data-guide-link')) {
-            track('abrir_guia');
+            track('abrir_guia', { guia: link.pathname });
             return;
         }
         const category = link.closest('.card[data-category]')?.dataset.category;
