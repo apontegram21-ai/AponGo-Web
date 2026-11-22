@@ -45,11 +45,13 @@
         .skip:focus { transform: none; }
         [hidden] { display: none !important; }
     
-        .route-feature { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; padding: 1rem 1.2rem; background: #fff; border: 1px solid #cddce5; border-inline-start: 4px solid #FF5722; border-radius: 0.8rem; }
-        .route-feature h2 { font-size: 1.15rem; }
         .secondary-card { grid-column: 1 / -1; background: #edf3f6; border: 1px solid #cddce5; }
         .secondary-card .card-title h2 { font-size: 1rem; }
         .secondary-card .card-icon { background: transparent; }
+        .airport { margin-top: 1rem; padding: 0 1rem 0.25rem; background: #fff; border: 1px solid #cddce5; border-radius: 0.8rem; }
+        .airport .partners { padding-bottom: 0.75rem; }
+        .cat-btn { flex: 1 1 8rem; font-weight: 650; }
+        .partner-pill { font-size: 1rem; }
     </style>
 </head>
 <body data-analytics-page="portada">
@@ -62,43 +64,36 @@
                 <span>Apon<span class="brand-orange">Go</span></span>
             </div>
             <h1>Viajes y movilidad en España</h1>
-            <p>Encuentra dónde reservar, moverte o pedir a domicilio.</p>
+            
         </div>
     </header>
     <main class="wrap" id="contenido">
-        <section class="route-feature" aria-labelledby="route-title">
-            <div>
-                <h2 id="route-title">Desde el aeropuerto de Alicante</h2>
-                <p>Elige tu destino y consulta cómo llegar a tu alojamiento.</p>
-                <div class="partners">
-                    <a class="partner-pill" data-guide-link href="guias/aeropuerto-alicante-benidorm.html">Benidorm</a>
-                    <a class="partner-pill" data-guide-link href="guias/aeropuerto-alicante-centro.html">Alicante centro</a>
-                    <a class="partner-pill" data-guide-link href="guias/aeropuerto-alicante-calpe.html">Calpe</a>
-                    <a class="partner-pill" lang="en" hreflang="en" data-guide-link href="guias/alicante-airport-benidorm-en.html">Benidorm in English</a>
-                </div>
-            </div>
-        </section>
         <form role="search" id="searchForm" hidden>
-            <label for="searchInput">Buscar servicios o proveedores</label>
+            <label for="searchInput">¿Qué necesitas?</label>
             <div class="search-row">
-                <input type="search" id="searchInput" placeholder="Ej. taxi, Renfe o alquiler de coche" autocomplete="off">
+                <input type="search" id="searchInput" placeholder="Benidorm, taxi, Renfe…" autocomplete="off">
                 <button class="search-btn" type="submit">Buscar</button>
                 <button type="reset">Limpiar</button>
             </div>
         </form>
         <div class="categories" id="categories" role="group" aria-label="Filtrar por categoría" hidden>
-            <button class="cat-btn" type="button" data-filter="0" aria-pressed="true">Todo</button>
-            <button class="cat-btn" type="button" data-filter="1" aria-pressed="false">Hoteles</button>
-            <button class="cat-btn" type="button" data-filter="2" aria-pressed="false">Vuelos</button>
-            <button class="cat-btn" type="button" data-filter="3" aria-pressed="false">Trenes</button>
-            <button class="cat-btn" type="button" data-filter="4" aria-pressed="false">Alquiler de coches</button>
-            <button class="cat-btn" type="button" data-filter="5" aria-pressed="false">Comida</button>
-            <button class="cat-btn" type="button" data-filter="6" aria-pressed="false">Taxis y VTC</button>
-            <button class="cat-btn" type="button" data-filter="7" aria-pressed="false">Tours y traslados</button>
-            <button class="cat-btn" type="button" data-filter="8" aria-pressed="false">Compras</button>
+            <button class="cat-btn" type="button" data-filter="moverme" aria-pressed="false"><span aria-hidden="true">🚆</span> Moverme</button>
+            <button class="cat-btn" type="button" data-filter="alojarme" aria-pressed="false"><span aria-hidden="true">🏨</span> Alojarme</button>
+            <button class="cat-btn" type="button" data-filter="comer" aria-pressed="false"><span aria-hidden="true">🍽️</span> Comer</button>
+            <button class="cat-btn" type="button" data-filter="actividades" aria-pressed="false"><span aria-hidden="true">🎟️</span> Qué hacer</button>
+            <button class="cat-btn" type="button" data-filter="todo" aria-pressed="false">Ver todo</button>
         </div>
+        <details class="airport" id="airport">
+            <summary>Desde el aeropuerto de Alicante</summary>
+            <div class="partners">
+                <a class="partner-pill" data-guide-link href="guias/aeropuerto-alicante-benidorm.html">Benidorm</a>
+                <a class="partner-pill" data-guide-link href="guias/aeropuerto-alicante-centro.html">Alicante centro</a>
+                <a class="partner-pill" data-guide-link href="guias/aeropuerto-alicante-calpe.html">Calpe</a>
+                <a class="partner-pill" lang="en" hreflang="en" data-guide-link href="guias/alicante-airport-benidorm-en.html">Benidorm in English</a>
+            </div>
+        </details>
         <p id="results" role="status"></p>
-        <p id="empty" hidden>Prueba otro término o selecciona Todo para ampliar la búsqueda.</p>
+        <p id="empty" hidden>Prueba otro término o pulsa Ver todo para buscar en todas las categorías.</p>
         <div class="main-grid" id="mainGrid">
         <!-- 1. Alojamientos -->
         <div class="card" data-category="Alojamientos">
@@ -279,22 +274,40 @@
         const buttons = [...categories.querySelectorAll('button')];
         const cards = [...document.querySelectorAll('.card')].map((element, index) => ({
             element,
-            category: index + 1,
+            groups: [['alojarme'], ['moverme'], ['moverme'], ['moverme'], ['comer'], ['moverme'], ['moverme', 'actividades'], []][index],
             text: normalize(element.textContent + ' ' + aliases[index])
         }));
-        let selectedCategory = 0;
+        const airport = document.querySelector('#airport');
+        const guides = [...airport.querySelectorAll('[data-guide-link]')];
+        const resultStatus = document.querySelector('#results');
+        let selectedCategory = '';
 
         function renderResults() {
             const terms = normalize(input.value).split(' ').filter(Boolean);
+            const searching = terms.length > 0;
+            const matches = text => terms.every(term => text.includes(term));
+            const showTravel = ['', 'todo', 'moverme'].includes(selectedCategory);
             let count = 0;
+            for (const guide of guides) {
+                guide.hidden = searching && !matches(normalize('aeropuerto alicante traslado alc ' + guide.textContent));
+                if (searching && showTravel && !guide.hidden) count++;
+            }
+            const hasGuides = guides.some(guide => !guide.hidden);
+            airport.hidden = !showTravel || !hasGuides;
+            if (searching && showTravel && hasGuides) airport.open = true;
+            if (!searching && airport.dataset.searching === 'true') airport.open = false;
+            airport.dataset.searching = String(searching);
+
             for (const card of cards) {
-                const matchesCategory = selectedCategory === 0 || card.category === selectedCategory;
-                const visible = matchesCategory && terms.every(term => card.text.includes(term));
+                const matchesCategory = selectedCategory === 'todo' ||
+                    (selectedCategory ? card.groups.includes(selectedCategory) : searching);
+                const visible = matchesCategory && matches(card.text);
                 card.element.hidden = !visible;
                 count += Number(visible);
             }
-            document.querySelector('#results').textContent = count === 1 ? '1 servicio' : count + ' servicios';
-            document.querySelector('#empty').hidden = count > 0;
+            const interacting = searching || selectedCategory !== '';
+            resultStatus.textContent = interacting ? (count === 1 ? '1 resultado' : count + ' resultados') : '';
+            document.querySelector('#empty').hidden = !interacting || count > 0;
         }
 
         input.addEventListener('input', renderResults);
@@ -310,7 +323,7 @@
         });
         for (const button of buttons) {
             button.addEventListener('click', () => {
-                selectedCategory = Number(button.dataset.filter);
+                selectedCategory = button.dataset.filter;
                 for (const option of buttons) option.setAttribute('aria-pressed', option === button);
                 renderResults();
             });
