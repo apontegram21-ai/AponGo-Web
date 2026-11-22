@@ -44,6 +44,12 @@
         .skip { position: absolute; transform: translateY(-200%); background: #fff; color: #07344b; padding: 0.6rem; }
         .skip:focus { transform: none; }
         [hidden] { display: none !important; }
+    
+        .route-feature { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; padding: 1rem 1.2rem; background: #fff; border: 1px solid #cddce5; border-inline-start: 4px solid #FF5722; border-radius: 0.8rem; }
+        .route-feature h2 { font-size: 1.15rem; }
+        .secondary-card { grid-column: 1 / -1; background: #edf3f6; border: 1px solid #cddce5; }
+        .secondary-card .card-title h2 { font-size: 1rem; }
+        .secondary-card .card-icon { background: transparent; }
     </style>
 </head>
 <body>
@@ -60,6 +66,13 @@
         </div>
     </header>
     <main class="wrap" id="contenido">
+        <section class="route-feature" aria-labelledby="route-title">
+            <div>
+                <h2 id="route-title">Del aeropuerto de Alicante a Benidorm</h2>
+                <p>Compara autobús directo, TRAM, taxi y traslado privado.</p>
+            </div>
+            <a class="partner-pill primary" href="guias/aeropuerto-alicante-benidorm.html">Ver cómo llegar</a>
+        </section>
         <form role="search" id="searchForm" hidden>
             <label for="searchInput">Buscar servicios o proveedores</label>
             <div class="search-row">
@@ -211,7 +224,7 @@
         </div>
 
         <!-- 8. Compras y Amazon -->
-        <div class="card" data-category="Compras">
+        <div class="card secondary-card" data-category="Compras">
             <div>
                 <div class="card-header">
                     <div class="card-icon" aria-hidden="true">📦</div>
@@ -222,7 +235,7 @@
                 </div>
             </div>
             <div class="partners">
-                <a href="https://www.amazon.es/" target="_blank" rel="noopener noreferrer" class="partner-pill primary">Amazon España</a>
+                <a href="https://www.amazon.es/" target="_blank" rel="noopener noreferrer" class="partner-pill">Amazon España</a>
                 <a href="https://www.correos.es/" target="_blank" rel="noopener noreferrer" class="partner-pill">Correos</a>
             </div>
         </div>
