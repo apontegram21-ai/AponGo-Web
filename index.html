@@ -52,7 +52,7 @@
         .secondary-card .card-icon { background: transparent; }
     </style>
 </head>
-<body>
+<body data-analytics-page="portada">
 
     <a class="skip" href="#contenido">Saltar al contenido</a>
     <header>
@@ -71,7 +71,7 @@
                 <h2 id="route-title">Del aeropuerto de Alicante a Benidorm</h2>
                 <p>Compara autobús directo, TRAM, taxi y traslado privado.</p>
             </div>
-            <a class="partner-pill primary" href="guias/aeropuerto-alicante-benidorm.html">Ver cómo llegar</a>
+            <a class="partner-pill primary" data-guide-link href="guias/aeropuerto-alicante-benidorm.html">Ver cómo llegar</a>
         </section>
         <form role="search" id="searchForm" hidden>
             <label for="searchInput">Buscar servicios o proveedores</label>
@@ -248,8 +248,8 @@
             <p>Los enlaces de proveedores se abren en otra pestaña.</p>
             <details id="privacidad">
                 <summary>Privacidad y medición</summary>
-                <p>Las búsquedas se procesan en tu navegador. AponGo no solicita tu ubicación ni pide crear una cuenta. Las reservas se hacen con cada proveedor, que aplica su propia política de privacidad.</p>
-                <p>Si activas la medición, Vercel Web Analytics registra visitas y, cuando el plan lo admite, clics en proveedores. No enviamos lo que escribes en el buscador. Tu elección se guarda durante la sesión de esta pestaña.</p>
+                <p>Las búsquedas se procesan en tu navegador. Los proveedores aplican su propia política de privacidad al abrir sus sitios.</p>
+                <p>Si activas la medición, Vercel Web Analytics registra las visitas. Cuando el plan lo admite, también mide si una búsqueda encuentra resultados, qué proveedor se abre y si se abre o copia una guía. AponGo no envía el texto de tu búsqueda ni solicita tu ubicación. Tu elección dura la sesión de esta pestaña.</p>
                 <button id="analyticsToggle" type="button" aria-pressed="false" hidden>Medición opcional</button>
                 <p id="analyticsStatus" role="status"></p>
             </details>
@@ -314,53 +314,6 @@
         categories.hidden = false;
         renderResults();
     </script>
-    <script>
-        const analyticsToggle = document.querySelector('#analyticsToggle');
-        const analyticsStatus = document.querySelector('#analyticsStatus');
-        const preferenceKey = 'apongo-analytics';
-        const isServed = location.protocol === 'https:';
-        let analyticsEnabled = false;
-        try { analyticsEnabled = isServed && sessionStorage.getItem(preferenceKey) === 'on'; } catch {}
-
-        function loadAnalytics() {
-            window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-            const script = document.createElement('script');
-            script.defer = true;
-            script.src = '/_vercel/insights/script.js';
-            script.addEventListener('error', () => {
-                analyticsStatus.textContent = 'La medición no está disponible en este despliegue.';
-            });
-            document.head.append(script);
-        }
-
-        if (isServed) {
-            analyticsToggle.hidden = false;
-            analyticsToggle.setAttribute('aria-pressed', analyticsEnabled);
-            if (analyticsEnabled) loadAnalytics();
-            analyticsToggle.addEventListener('click', () => {
-                try {
-                    sessionStorage.setItem(preferenceKey, analyticsEnabled ? 'off' : 'on');
-                } catch {
-                    analyticsStatus.textContent = 'El navegador no permite guardar tu elección.';
-                    return;
-                }
-                if (analyticsEnabled) {
-                    analyticsEnabled = false;
-                    location.reload();
-                    return;
-                }
-                analyticsEnabled = true;
-                analyticsToggle.setAttribute('aria-pressed', 'true');
-                loadAnalytics();
-            });
-            document.querySelector('#mainGrid').addEventListener('click', event => {
-                const link = event.target.closest('.partner-pill');
-                if (!analyticsEnabled || !link) return;
-                window.va('event', { name: 'clic_proveedor', data: {
-                    proveedor: link.hostname, categoria: link.closest('.card').dataset.category
-                } });
-            });
-        }
-    </script>
+    <script src="apongo-analytics.js" defer></script>
 </body>
 </html>
