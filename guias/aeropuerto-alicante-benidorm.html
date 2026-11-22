@@ -56,7 +56,7 @@
         .help details { border-bottom: 1px solid #cddce5; }
     </style>
 </head>
-<body>
+<body data-analytics-page="alicante-benidorm">
     <a class="skip" href="#contenido">Saltar al contenido</a>
     <header>
         <div class="wrap">
@@ -67,6 +67,8 @@
     </header>
     <main id="contenido" class="wrap">
         <p class="intro">Si quieres evitar transbordos, empieza por el autobús directo. Si necesitas llegar a la puerta de tu alojamiento, consulta un taxi o un traslado privado.</p>
+        <button id="shareGuide" type="button" hidden>Copiar enlace de esta guía</button>
+        <span id="shareStatus" role="status"></span>
         <h2>Opciones de transporte</h2>
         <div class="main-grid route-grid">
             <article class="card" data-category="Autobús">
@@ -98,8 +100,16 @@
     </main>
     <footer><div class="wrap">
         <p>El enlace de Trip.com es de afiliación. AponGo puede recibir una comisión si reservas a través de él.</p>
-        <p>Los enlaces de proveedores abren otra pestaña. <a href="../index.html#privacidad">Privacidad de AponGo</a></p>
+        <p>Los enlaces de proveedores abren otra pestaña.</p>
         <a class="partner-pill" href="../index.html">Volver a los servicios de AponGo</a>
+        <details id="privacidad">
+                <summary>Privacidad y medición</summary>
+                <p>Las búsquedas se procesan en tu navegador. Los proveedores aplican su propia política de privacidad al abrir sus sitios.</p>
+                <p>Si activas la medición, Vercel Web Analytics registra las visitas. Cuando el plan lo admite, también mide si una búsqueda encuentra resultados, qué proveedor se abre y si se abre o copia una guía. AponGo no envía el texto de tu búsqueda ni solicita tu ubicación. Tu elección dura la sesión de esta pestaña.</p>
+                <button id="analyticsToggle" type="button" aria-pressed="false" hidden>Medición opcional</button>
+                <p id="analyticsStatus" role="status"></p>
+            </details>
     </div></footer>
+    <script src="../apongo-analytics.js" defer></script>
 </body>
 </html>
