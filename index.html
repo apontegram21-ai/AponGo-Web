@@ -5,6 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AponGo | Viajes, transporte y servicios en España</title>
+    <meta property="og:url" content="https://apongo-web.vercel.app/">
+    <meta property="og:image" content="https://apongo-web.vercel.app/assets/costa-blanca-social.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="AponGo Costa Blanca: Alicante, Benidorm, Calpe">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="description" content="Encuentra proveedores de vuelos, hoteles, trenes, taxis, alquiler de coches y actividades en España.">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="es_ES">
@@ -138,7 +144,7 @@
             <button class="cat-btn" type="button" data-filter="todo" aria-pressed="false">Ver todo</button>
         </div>
         <details class="airport" id="airport" open>
-            <summary>Desde el aeropuerto de Alicante</summary>
+            <summary>Costa Blanca · Desde el aeropuerto de Alicante</summary>
             <div class="partners">
                 <a class="partner-pill" data-guide-link data-title="Cómo llegar a Benidorm" data-terms="benidorm bus autobus alsa tram taxi" href="guias/aeropuerto-alicante-benidorm.html">Benidorm</a>
                 <a class="partner-pill" data-guide-link data-title="Cómo llegar al centro de Alicante" data-terms="centro alicante luceros estacion c6 bus autobus taxi" href="guias/aeropuerto-alicante-centro.html">Alicante centro</a>
@@ -401,6 +407,7 @@
         for (const button of buttons) {
             button.addEventListener('click', () => {
                 selectedCategory = button.dataset.filter;
+                input.value = '';
                 for (const option of buttons) option.setAttribute('aria-pressed', option === button);
                 renderResults();
             });
