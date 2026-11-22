@@ -19,4 +19,13 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://apongo-web.vercel.app/guias/aeropuerto-alicante-benidorm.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://apongo-web.vercel.app/guias/alicante-airport-benidorm-en.html"/>
   </url>
+  <url>
+    <loc>https://apongo-web.vercel.app/guias/aeropuerto-alicante-altea.html</loc>
+  </url>
+  <url>
+    <loc>https://apongo-web.vercel.app/guias/aeropuerto-alicante-denia.html</loc>
+  </url>
+  <url>
+    <loc>https://apongo-web.vercel.app/guias/aeropuerto-alicante-javea.html</loc>
+  </url>
 </urlset>
