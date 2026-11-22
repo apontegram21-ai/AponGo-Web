@@ -139,17 +139,17 @@
         <details class="airport" id="airport" open>
             <summary>Desde el aeropuerto de Alicante</summary>
             <div class="partners">
-                <a class="partner-pill" data-guide-link href="guias/aeropuerto-alicante-benidorm.html">Benidorm</a>
-                <a class="partner-pill" data-guide-link href="guias/aeropuerto-alicante-centro.html">Alicante centro</a>
-                <a class="partner-pill" data-guide-link href="guias/aeropuerto-alicante-calpe.html">Calpe</a>
-                <a class="partner-pill" lang="en" hreflang="en" data-guide-link href="guias/alicante-airport-benidorm-en.html">Benidorm in English</a>
+                <a class="partner-pill" data-guide-link data-title="Cómo llegar a Benidorm" data-terms="benidorm bus autobus alsa tram taxi" href="guias/aeropuerto-alicante-benidorm.html">Benidorm</a>
+                <a class="partner-pill" data-guide-link data-title="Cómo llegar al centro de Alicante" data-terms="centro alicante luceros estacion c6 bus autobus taxi" href="guias/aeropuerto-alicante-centro.html">Alicante centro</a>
+                <a class="partner-pill" data-guide-link data-title="Cómo llegar a Calpe" data-terms="calpe calp alsa bus autobus taxi" href="guias/aeropuerto-alicante-calpe.html">Calpe</a>
+                <a class="partner-pill" lang="en" hreflang="en" data-guide-link data-title="Getting to Benidorm · English" data-terms="benidorm english ingles airport bus coach tram taxi" href="guias/alicante-airport-benidorm-en.html">Benidorm in English</a>
             </div>
         </details>
         <p id="results" role="status"></p>
         <p id="empty" hidden>Prueba otro término o pulsa Ver todo para buscar en todas las categorías.</p>
         <div class="main-grid" id="mainGrid">
         <!-- 1. Alojamientos -->
-        <div class="card" data-category="Alojamientos">
+        <div class="card" data-category="Alojamientos" data-groups="alojarme" data-terms="hotel hoteles hostal hostales alojamiento alojamientos apartamentos">
             <div>
                 <div class="card-header">
                     <div class="card-icon" aria-hidden="true">🏨</div>
@@ -168,7 +168,7 @@
         </div>
 
         <!-- 2. Vuelos -->
-        <div class="card" data-category="Vuelos">
+        <div class="card" data-category="Vuelos" data-groups="moverme" data-terms="vuelo vuelos avion aviones billete billetes aeropuerto">
             <div>
                 <div class="card-header">
                     <div class="card-icon" aria-hidden="true">✈️</div>
@@ -186,7 +186,7 @@
         </div>
 
         <!-- 3. Trenes -->
-        <div class="card" data-category="Trenes">
+        <div class="card" data-category="Trenes" data-groups="moverme" data-terms="tren trenes ferrocarril ave billete billetes">
             <div>
                 <div class="card-header">
                     <div class="card-icon" aria-hidden="true">🚆</div>
@@ -204,7 +204,7 @@
         </div>
 
         <!-- 4. Alquiler de Coches -->
-        <div class="card" data-category="Alquiler de Coches">
+        <div class="card" data-category="Alquiler de Coches" data-groups="moverme" data-terms="coche coches auto autos rent car alquiler">
             <div>
                 <div class="card-header">
                     <div class="card-icon" aria-hidden="true">🚗</div>
@@ -222,7 +222,7 @@
         </div>
 
         <!-- 5. Comida a Domicilio -->
-        <div class="card" data-category="Comida a Domicilio">
+        <div class="card" data-category="Comida a Domicilio" data-groups="comer" data-terms="comida delivery domicilio restaurante restaurantes">
             <div>
                 <div class="card-header">
                     <div class="card-icon" aria-hidden="true">🍔</div>
@@ -241,7 +241,7 @@
         </div>
 
         <!-- 6. Transporte Urbano / VTC -->
-        <div class="card" data-category="Transporte Urbano / VTC">
+        <div class="card" data-category="Transporte Urbano / VTC" data-groups="moverme" data-terms="taxi taxis vtc uber patinete patinetes movilidad">
             <div>
                 <div class="card-header">
                     <div class="card-icon" aria-hidden="true">🚖</div>
@@ -260,7 +260,7 @@
         </div>
 
         <!-- 7. Tours y Traslados -->
-        <div class="card" data-category="Tours y Traslados">
+        <div class="card" data-category="Tours y Traslados" data-groups="moverme actividades" data-terms="tour tours excursion excursiones actividad actividades traslado traslados aeropuerto">
             <div>
                 <div class="card-header">
                     <div class="card-icon" aria-hidden="true">🎟️</div>
@@ -277,7 +277,7 @@
         </div>
 
         <!-- 8. Compras y Amazon -->
-        <div class="card secondary-card" data-category="Compras">
+        <div class="card secondary-card" data-category="Compras" data-groups="" data-terms="compra compras tienda accesorio accesorios">
             <div>
                 <div class="card-header">
                     <div class="card-icon" aria-hidden="true">📦</div>
@@ -309,44 +309,46 @@
         </div>
     </footer>
     <script>
-        const aliases = [
-            'hotel hoteles hostal hostales alojamiento alojamientos apartamentos',
-            'vuelo vuelos avion aviones billete billetes aeropuerto',
-            'tren trenes ferrocarril ave billete billetes',
-            'coche coches auto autos rent car alquiler',
-            'comida delivery domicilio restaurante restaurantes',
-            'taxi taxis vtc uber patinete patinetes movilidad',
-            'tour tours excursion excursiones actividad actividades traslado traslados aeropuerto',
-            'compra compras tienda accesorio accesorios'
-        ];
         const normalize = text => text.toLowerCase().normalize('NFD')
             .replace(/\p{M}/gu, '').replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
         const form = document.querySelector('#searchForm');
         const input = document.querySelector('#searchInput');
         const categories = document.querySelector('#categories');
         const buttons = [...categories.querySelectorAll('button')];
-        const cards = [...document.querySelectorAll('.card')].map((element, index) => ({
+        const cards = [...document.querySelectorAll('#mainGrid .card')].map(element => ({
             element,
-            groups: [['alojarme'], ['moverme'], ['moverme'], ['moverme'], ['comer'], ['moverme'], ['moverme', 'actividades'], []][index],
-            text: normalize(element.textContent + ' ' + aliases[index])
+            groups: element.dataset.groups.split(' '),
+            text: normalize(element.textContent + ' ' + element.dataset.terms),
+            providers: [...element.querySelectorAll('.partner-pill')].map(link => ({
+                link,
+                text: normalize(link.textContent)
+            }))
         }));
         const airport = document.querySelector('#airport');
-        const guides = [...airport.querySelectorAll('[data-guide-link]')];
+        const guides = [...airport.querySelectorAll('[data-guide-link]')].map(link => ({
+            link,
+            label: link.textContent,
+            text: normalize('aeropuerto airport alicante elche miguel hernandez traslado transfer alc ' + link.dataset.terms)
+        }));
+        const connectingWords = new Set(['a', 'al', 'como', 'de', 'del', 'desde', 'el', 'en', 'la', 'llegar', 'para', 'por', 'to', 'from', 'how', 'get', 'the']);
         const resultStatus = document.querySelector('#results');
         let selectedCategory = '';
         let airportWasOpen = airport.open;
 
         function renderResults() {
-            const terms = normalize(input.value).split(' ').filter(Boolean);
+            const words = normalize(input.value).split(' ').filter(Boolean);
+            const keywords = words.filter(word => !connectingWords.has(word));
+            const terms = keywords.length ? keywords : words;
             const searching = terms.length > 0;
             const matches = text => terms.every(term => text.includes(term));
             const showTravel = ['', 'todo', 'moverme'].includes(selectedCategory);
             let count = 0;
             for (const guide of guides) {
-                guide.hidden = searching && !matches(normalize('aeropuerto alicante traslado alc ' + guide.textContent));
-                if (searching && showTravel && !guide.hidden) count++;
+                guide.link.hidden = searching && !matches(guide.text);
+                guide.link.textContent = searching ? guide.link.dataset.title : guide.label;
+                if (searching && showTravel && !guide.link.hidden) count++;
             }
-            const hasGuides = guides.some(guide => !guide.hidden);
+            const hasGuides = guides.some(guide => !guide.link.hidden);
             airport.hidden = !showTravel || !hasGuides;
             if (searching && airport.dataset.searching !== 'true') airportWasOpen = airport.open;
             if (searching && showTravel && hasGuides) airport.open = true;
@@ -358,6 +360,10 @@
                     (selectedCategory ? card.groups.includes(selectedCategory) : searching);
                 const visible = matchesCategory && matches(card.text);
                 card.element.hidden = !visible;
+                const providerMatch = searching && card.providers.some(provider => matches(provider.text));
+                for (const provider of card.providers) {
+                    provider.link.hidden = providerMatch && !matches(provider.text);
+                }
                 count += Number(visible);
             }
             const interacting = searching || selectedCategory !== '';
