@@ -280,7 +280,12 @@
             event.preventDefault();
             renderResults();
         });
-        form.addEventListener('reset', () => queueMicrotask(renderResults));
+        form.addEventListener('reset', event => {
+            event.preventDefault();
+            input.value = '';
+            renderResults();
+            input.focus();
+        });
         for (const button of buttons) {
             button.addEventListener('click', () => {
                 selectedCategory = Number(button.dataset.filter);
