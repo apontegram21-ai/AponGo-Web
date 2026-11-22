@@ -15,8 +15,9 @@
         body { margin: 0; background: #f3f7fa; color: #173345; font: 1rem/1.5 system-ui, sans-serif; }
         .wrap { width: min(72rem, calc(100% - 2rem)); margin-inline: auto; }
         header { background: #07344b; color: #fff; padding: 1.25rem 0 2rem; }
-        .brand { font-size: 1.5rem; font-weight: 800; }
-        .brand span { color: #ffac81; }
+        .brand { display: flex; align-items: center; gap: 0.75rem; font-size: 1.5rem; font-weight: 800; }
+        .ag-badge { background: #FF5722; color: white; font-weight: 900; padding: 8px 12px; border-radius: 8px; font-size: 1.25rem; font-family: "Arial Black", "Impact", sans-serif; letter-spacing: -1px; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+        .brand-orange { color: #FF7043; }
         h1 { font-size: clamp(1.9rem, 5vw, 3rem); line-height: 1.12; margin: 1.25rem 0 0.5rem; }
         h2, p { margin: 0; }
         header p { color: #e1edf3; }
@@ -50,7 +51,10 @@
     <a class="skip" href="#contenido">Saltar al contenido</a>
     <header>
         <div class="wrap">
-            <div class="brand">Apon<span>Go</span></div>
+            <div class="brand">
+                <span class="ag-badge" aria-hidden="true">AG</span>
+                <span>Apon<span class="brand-orange">Go</span></span>
+            </div>
             <h1>Viajes y movilidad en España</h1>
             <p>Encuentra dónde reservar, moverte o pedir a domicilio.</p>
         </div>
