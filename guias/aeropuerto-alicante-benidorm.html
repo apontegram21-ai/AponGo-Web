@@ -56,6 +56,10 @@
         .route-grid .partners { margin-top: auto; }
         .help { margin-top: 1.5rem; }
         .help details { border-bottom: 1px solid #cddce5; }
+        .route-fact { color: #075578; font-weight: 750; }
+        .route-details { border-top: 1px solid #cddce5; }
+        .route-details summary { font-size: 0.95rem; }
+        #llegada-tarde:target { outline: 2px solid #075578; outline-offset: 3px; }
     </style>
 </head>
 <body data-analytics-page="alicante-benidorm">
@@ -68,7 +72,7 @@
         </div>
     </header>
     <main id="contenido" class="wrap">
-        <p class="intro">Si quieres evitar transbordos, empieza por el autobús directo. Si necesitas llegar a la puerta de tu alojamiento, consulta un taxi o un traslado privado.</p>
+        <p class="intro">Compara las cuatro opciones según cómo quieras llegar. <a href="#llegada-tarde">¿Llegas tarde?</a></p>
         <button id="shareGuide" type="button" hidden>Copiar enlace de esta guía</button>
         <span id="shareStatus" role="status"></span>
         <div class="partners"><a class="partner-pill" lang="en" hreflang="en" href="alicante-airport-benidorm-en.html">Read in English</a></div>
@@ -76,28 +80,32 @@
         <div class="main-grid route-grid">
             <article class="card" data-category="Autobús">
                 <h3>Autobús directo de Alsa</h3>
-                <p>Sale del aeropuerto y llega a Benidorm sin cambiar de vehículo. Elige tu fecha y confirma la parada de llegada antes de comprar.</p>
+                <p class="route-fact">Sin transbordos</p>
+                <details class="route-details"><summary>Paradas y consejos</summary><p>Sale del aeropuerto y llega a Benidorm sin cambiar de vehículo. Elige tu fecha y confirma la parada de llegada antes de comprar.</p></details>
                 <div class="partners"><a class="partner-pill primary" href="https://www.alsa.es/ruta/aeropuerto-alicante-elche-benidorm" target="_blank" rel="noopener noreferrer">Horarios y billetes en Alsa</a></div>
             </article>
             <article class="card" data-category="TRAM">
                 <h3>Autobús C6 y TRAM</h3>
-                <p>Toma el C6 hacia Alicante, baja en Luceros y cambia a la línea 1 del TRAM hacia Benidorm. Revisa ambos horarios y deja margen para el transbordo.</p>
+                <p class="route-fact">1 transbordo en Alicante</p>
+                <details class="route-details"><summary>Paradas y consejos</summary><p>Toma el C6 hacia Alicante, baja en Luceros y cambia a la línea 1 del TRAM hacia Benidorm. Revisa ambos horarios y deja margen para el transbordo.</p></details>
                 <div class="partners"><a class="partner-pill" href="https://www.aena.es/es/alicante-elche-miguel-hernandez/como-llegar/tren-tram.html" target="_blank" rel="noopener noreferrer">Ver conexión y horarios en Aena</a></div>
             </article>
             <article class="card" data-category="Taxi">
                 <h3>Taxi oficial</h3>
-                <p>Puedes ir directamente a tu dirección en Benidorm. Consulta en Aena las compañías oficiales y pide una estimación para tu destino.</p>
+                <p class="route-fact">Puerta a puerta</p>
+                <details class="route-details"><summary>Paradas y consejos</summary><p>Puedes ir directamente a tu dirección en Benidorm. Consulta en Aena las compañías oficiales y pide una estimación para tu destino.</p></details>
                 <div class="partners"><a class="partner-pill" href="https://www.aena.es/es/alicante-elche-miguel-hernandez/como-llegar/taxi.html" target="_blank" rel="noopener noreferrer">Consultar taxis oficiales</a></div>
             </article>
             <article class="card" data-category="Traslado privado">
                 <h3>Traslado privado reservado</h3>
-                <p>Indica el aeropuerto y la dirección de destino. Antes de reservar, confirma el precio, el punto de encuentro y las condiciones si se retrasa tu vuelo.</p>
+                <p class="route-fact">Con reserva previa</p>
+                <details class="route-details"><summary>Paradas y consejos</summary><p>Indica el aeropuerto y la dirección de destino. Antes de reservar, confirma el precio, el punto de encuentro y las condiciones si se retrasa tu vuelo.</p></details>
                 <div class="partners"><a class="partner-pill" href="https://www.trip.com/airport-transfers/?Allianceid=11137456&amp;SID=334408187&amp;trip_sub1=&amp;trip_sub3=D20685198" target="_blank" rel="noopener noreferrer sponsored">Consultar traslados en Trip.com</a></div>
             </article>
         </div>
         <section class="help" aria-labelledby="antes">
             <h2 id="antes">Antes de salir del aeropuerto</h2>
-            <details><summary>¿Y si mi vuelo llega tarde?</summary><p>Comprueba la última salida para tu fecha y deja tiempo para recoger el equipaje. Si el horario queda justo, ten a mano la opción de taxi o traslado.</p></details>
+            <details id="llegada-tarde"><summary>¿Y si mi vuelo llega tarde?</summary><p>Comprueba la última salida para tu fecha y deja tiempo para recoger el equipaje. Si el horario queda justo, ten a mano la opción de taxi o traslado.</p></details>
             <details><summary>¿Cómo elijo dónde bajarme?</summary><p>Mira la dirección de tu alojamiento y compárala con la parada de llegada antes de reservar. Si queda lejos, calcula también el último tramo.</p></details>
         </section>
     </main>
@@ -113,6 +121,14 @@
                 <p id="analyticsStatus" role="status"></p>
             </details>
     </div></footer>
+    <script>
+        const lateArrival = document.querySelector('#llegada-tarde');
+        function showLateArrival() {
+            if (location.hash === '#llegada-tarde') lateArrival.open = true;
+        }
+        window.addEventListener('hashchange', showLateArrival);
+        showLateArrival();
+    </script>
     <script src="../apongo-analytics.js" defer></script>
 </body>
 </html>
