@@ -1,0 +1,22 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Madrid in one day: Prado, Retiro and Las Letras | AponGo</title><link rel="canonical" href="https://apongo-web.vercel.app/guias/madrid-prado-y-las-letras-en.html"><link rel="alternate" hreflang="en" href="https://apongo-web.vercel.app/guias/madrid-prado-y-las-letras-en.html"><link rel="alternate" hreflang="es" href="https://apongo-web.vercel.app/guias/madrid-prado-y-las-letras.html"><style>*{box-sizing:border-box}body{margin:0;background:#f2f9fb;color:#173345;font:1rem/1.55 system-ui,sans-serif}.wrap{width:min(44rem,calc(100% - 2rem));margin:auto}header{background:#082f45;color:white;padding:1.2rem 0;border-bottom:4px solid #ff7043}header a{color:white}.brand{font-size:1.4rem;font-weight:900;text-decoration:none}.brand span{color:#ff986e}h1{line-height:1.14;margin:.65rem 0}main{padding:1.25rem 0 3rem}nav{display:flex;gap:.85rem;flex-wrap:wrap}a{color:#075578}label{display:block;font-weight:700}input{width:100%;padding:.75rem;font:inherit;border:1px solid #647f8c;border-radius:.55rem;margin:.35rem 0 .8rem}ul,ol{list-style:none;padding:0;margin:0}li>a{display:block;min-height:44px;padding:.75rem 1rem;border-bottom:1px solid #c4dce2;background:white;font-weight:650}li>a:hover{background:#e1f5f4}:focus-visible{outline:3px solid #ad430e;outline-offset:2px}[hidden]{display:none!important}section,details{margin-block:1rem}button{font:inherit;min-height:44px;padding:.45rem .75rem}summary{font-weight:700;cursor:pointer;padding:.4rem 0}</style></head><body><header><div class="wrap"><a class="brand" href="/">Apon<span>Go</span></a><h1>Madrid in one day: Prado, Retiro and Las Letras</h1><nav><a href="index-en.html">All destinations</a><a href="madrid-prado-y-las-letras.html" hreflang="es" lang="es">Español</a></nav></div></header><main class="wrap"><p><a href="madrid-en.html">Madrid guides</a></p>
+<form id="hotel-route" hidden><label for="hotel">Start from your hotel or address</label><input id="hotel" maxlength="160" placeholder="Hotel name or street in Madrid" autocomplete="off"><button type="submit">See driving route to the Prado</button></form>
+<p><a href="https://www.google.com/maps/dir/?api=1&amp;destination=Museo+del+Prado%2C+Madrid&amp;travelmode=driving">Open the Prado in Maps</a> · Use this destination if you book a taxi.</p>
+<section><h2>Morning · Prado Museum</h2><p>Start at the Prado. Check admission for your date before setting off.</p><a href="https://entradas.museodelprado.es/">Official Prado tickets</a></section>
+<section><h2>Lunch · Las Letras</h2><ul><li><a href="https://www.esmadrid.com/restaurantes/casa-alberto">Casa Alberto · Traditional Madrid cooking</a></li><li><a href="https://www.esmadrid.com/restaurantes/taberna-de-la-dolores">Taberna de la Dolores · Tapas and a light bite</a></li><li><a href="https://www.esmadrid.com/restaurantes/cerveceria-alemana">Cervecería Alemana · Tapas on Plaza de Santa Ana</a></li></ul></section>
+<section><h2>Afternoon · El Retiro</h2><p>Take a walk in El Retiro. For a longer afternoon, explore the streets around Plaza de Santa Ana before dinner.</p><a href="https://www.esmadrid.com/informacion-turistica/parque-del-retiro">Park information</a></section>
+<section><h2>Evening · Plaza de Santa Ana</h2><p>Return to Las Letras for dinner or a drink. At the weekend, check what is on at Teatro Español before booking.</p><a href="https://www.teatroespanol.es/programacion">Theatre listings</a></section>
+<script>
+const form = document.querySelector('#hotel-route');
+const hotel = document.querySelector('#hotel');
+form.hidden = false;
+form.addEventListener('submit', event => {
+  event.preventDefault();
+  const url = new URL('https://www.google.com/maps/dir/');
+  url.searchParams.set('api', '1');
+  url.searchParams.set('destination', 'Museo del Prado, Madrid');
+  url.searchParams.set('travelmode', 'driving');
+  const start = hotel.value.trim();
+  if (start) url.searchParams.set('origin', start);
+  location.assign(url.href);
+});
+</script></main></body></html>
